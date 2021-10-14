@@ -12,6 +12,28 @@ public class Puzzle : MonoBehaviour
 
     private int _currentLayer;
     private List<Outline> _listOfCurrentOutlines;
+ 
+    private void Start()
+    {
+        _currentLayer = 1;
+        _listOfCurrentOutlines = new List<Outline>();
+        _elements = GetComponentsInChildren<Element>();
+        _outlines = GetComponentsInChildren<Outline>();
+        SetListOfCurrentOutlines(_currentLayer);
+        foreach (var element in _elements)
+        {
+            element.transform.SetParent(_elementsParent, false);
+            element.Init(_dragingParent);
+        }   
+    }
+    private void Update()
+    {
+        if(_listOfCurrentOutlines.Count==0 && _currentLayer<=3)
+        {
+            _currentLayer++;
+            SetListOfCurrentOutlines(_currentLayer);
+        }
+    }
 
     private void SetListOfCurrentOutlines(int currentLayer)
     {
@@ -32,27 +54,6 @@ public class Puzzle : MonoBehaviour
         {
             if (outline.IsEmpty == false)
                 _listOfCurrentOutlines.Remove(outline);
-        }
-    }
-    private void Start()
-    {
-        _currentLayer = 1;
-        _listOfCurrentOutlines = new List<Outline>();
-        _elements = GetComponentsInChildren<Element>();
-        _outlines = GetComponentsInChildren<Outline>();
-        SetListOfCurrentOutlines(_currentLayer);
-        foreach (var element in _elements)
-        {
-            element.transform.SetParent(_elementsParent, false);
-            element.Init(_dragingParent);
-        }   
-    }
-    private void Update()
-    {
-        if(_listOfCurrentOutlines.Count==0 && _currentLayer<=3)
-        {
-            _currentLayer++;
-            SetListOfCurrentOutlines(_currentLayer);
         }
     }
 }
