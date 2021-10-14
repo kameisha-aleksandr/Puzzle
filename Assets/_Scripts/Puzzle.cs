@@ -1,59 +1,58 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Puzzle : MonoBehaviour
 {
-    [SerializeField] private Transform _elementsParent;
-    [SerializeField] private RectTransform _dragingParent;
+    [SerializeField] private Transform _startElementsParent;
+    [SerializeField] private Transform _dragingParent;
+    [SerializeField] public UnityEvent _won;
 
-    private Element[] _elements;
-    private Outline[] _outlines;
-
+    private Layer[] _layers;
     private int _currentLayer;
-    private List<Outline> _listOfCurrentOutlines;
  
-    private void Start()
+    private void Awake()
     {
         _currentLayer = 1;
-        _listOfCurrentOutlines = new List<Outline>();
-        _elements = GetComponentsInChildren<Element>();
-        _outlines = GetComponentsInChildren<Outline>();
-        SetListOfCurrentOutlines(_currentLayer);
-        foreach (var element in _elements)
-        {
-            element.transform.SetParent(_elementsParent, false);
-            element.Init(_dragingParent);
-        }   
+        _layers = GetComponentsInChildren<Layer>();
+        foreach (var layer in _layers)
+            layer.Init(_dragingParent, _startElementsParent);
     }
-    private void Update()
+    private void Start()
     {
-        if(_listOfCurrentOutlines.Count==0 && _currentLayer<=3)
-        {
-            _currentLayer++;
-            SetListOfCurrentOutlines(_currentLayer);
-        }
+        SetActiveCurrentOutlines(_currentLayer);
     }
 
-    private void SetListOfCurrentOutlines(int currentLayer)
+    private void SetActiveCurrentOutlines(int currentLayer)
     {
-        foreach (var outline in _outlines)
+        for (int i=0; i< _layers.Length; i++)
         {
-            if (outline.Layer == currentLayer)
+            foreach (var outline in _layers[i]._outlines)
             {
-                _listOfCurrentOutlines.Add(outline);
-                outline.SetActiveOutline(true);
+                if (i== currentLayer-1)
+                {
+                    outline.SetActive(true);
+                }
+                else
+                    outline.SetActive(false);
             }
-            else
-                outline.SetActiveOutline(false);
         }
     }
-    public void RemoveFilledOutlines()
+    public void CheckOutlineList()
     {
-        foreach (var outline in _listOfCurrentOutlines.ToArray())
+        int countEmptyElements = 0;
+        foreach(var outline in _layers[_currentLayer - 1]._outlines)
         {
-            if (outline.IsEmpty == false)
-                _listOfCurrentOutlines.Remove(outline);
+            if (outline.IsEmpty)
+                countEmptyElements++;
+        }
+        if (_currentLayer == _layers.Length && countEmptyElements == 0)
+            _won.Invoke();
+        else if (countEmptyElements == 0)
+        {
+            _currentLayer++;
+            SetActiveCurrentOutlines(_currentLayer);
         }
     }
 }

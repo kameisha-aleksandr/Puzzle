@@ -4,12 +4,26 @@ using UnityEngine;
 
 public class Layer : MonoBehaviour
 {
-    [SerializeField] private int _number;
+    private Transform _startElementsParent;
+    private Transform _dragingParent;
 
-    public int Number { get => _number; set => _number = value; }
+    private List<Element> _elements;
+    public List<Outline> _outlines;
 
-    void Start()
+    public void Init(Transform dragingParent, Transform startElementsParent)
     {
-        
+        _dragingParent = dragingParent;
+        _startElementsParent = startElementsParent;
+    }
+    private void Start()
+    {
+        _elements = new List<Element>(GetComponentsInChildren<Element>());
+        _outlines =new List<Outline>(GetComponentsInChildren<Outline>());
+
+        foreach (var element in _elements)
+        {
+            element.transform.SetParent(_startElementsParent, false);
+            element.Init(_dragingParent);
+        }
     }
 }

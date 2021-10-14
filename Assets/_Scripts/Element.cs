@@ -1,22 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Element : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
 {
-    private Transform _targetParent;
     private CanvasGroup _canvasGroup;
+    private Transform _targetParent;
     private Transform _dragingParent;
     private Transform _previousParent;
-
+    private Puzzle _puzzle;
     private bool _isElementOnPlace;
 
-    [SerializeField] private UnityEvent _posted;
-
-    public void Init (RectTransform dragingParent)
+    public void Init (Transform dragingParent)
     {
         _dragingParent = dragingParent;
     }
@@ -25,6 +22,7 @@ public class Element : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
         _isElementOnPlace = false;
         _targetParent = transform.parent;
          _canvasGroup = GetComponent<CanvasGroup>();
+        _puzzle = GetComponentInParent<Puzzle>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -59,7 +57,7 @@ public class Element : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragH
                 transform.position = outline.transform.position;
                 _isElementOnPlace = true;
                 outline.IsEmpty = false;
-                _posted?.Invoke();
+                _puzzle.CheckOutlineList();
             }
             else
             {
