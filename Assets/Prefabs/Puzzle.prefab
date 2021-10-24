@@ -1168,7 +1168,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772675154510100}
   m_Layer: 5
-  m_Name: GO10
+  m_Name: Curtains
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1705,7 +1705,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772675472714007}
   m_Layer: 5
-  m_Name: GO12
+  m_Name: Carpet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1993,7 +1993,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772675666261001}
   m_Layer: 5
-  m_Name: GO2
+  m_Name: Sofa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2130,7 +2130,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772675759156004}
   m_Layer: 5
-  m_Name: GO1
+  m_Name: Cactus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2167,7 +2167,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772675883322554}
   m_Layer: 5
-  m_Name: GO3
+  m_Name: Dresser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2204,7 +2204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772675984897428}
   m_Layer: 5
-  m_Name: GO8
+  m_Name: Hole
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2341,7 +2341,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772676123112896}
   m_Layer: 5
-  m_Name: GO7
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2578,7 +2578,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772676198108219}
   m_Layer: 5
-  m_Name: GO4
+  m_Name: Picture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2615,7 +2615,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772676236867844}
   m_Layer: 5
-  m_Name: GO5
+  m_Name: Frame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2704,7 +2704,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772676260858625}
   m_Layer: 5
-  m_Name: GO9
+  m_Name: Building
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2794,7 +2794,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772676343738645}
   m_Layer: 5
-  m_Name: GO6
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2831,7 +2831,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3844772676468877388}
   m_Layer: 5
-  m_Name: GO11
+  m_Name: Human
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
